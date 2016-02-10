@@ -125,3 +125,12 @@ input {
     color: $state-danger-text;
   }
 }
+
+/* table **********************************************************************/
+table, th, td {
+    border: none;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+}
