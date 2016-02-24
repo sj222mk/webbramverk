@@ -7,12 +7,17 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   
-  resources :users
-
+  resources :users do
+    resources :api_keys #, only: [:new, :create, :destroy]
+  end
+  
+  #resources :api_keys, only: [:new, :edit]
   # get 'users/' => 'users#show'
   # get 'users/new'
   # get 'users/:name' => 'users#show'
   # get 'users/:id' => 'users#show'
+  
+  get 'users/:id/api_keys/new' => 'api_keys#new'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

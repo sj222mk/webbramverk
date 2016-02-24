@@ -1,0 +1,15 @@
+<% provide(:title, 'Make new key') %>
+<% provide(:button_text, 'Create new key') %>
+
+<% if logged_in? %>
+<h1>Make new key</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render 'api_keys/api_key_form' %>
+  </div>
+</div>
+<% else %>
+"Nothing to show"
+
+<% end %>

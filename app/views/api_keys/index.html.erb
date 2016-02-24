@@ -1,11 +1,9 @@
-<% provide(:title, @user.name) %>
-
 <h1>
-  <%= @user.name %>
+  <% @name %>
 </h1>
 
 <div class="col-md-8">
-    <% if @user.api_keys.any? %>
+    <% if @api_keys.any? %>
       <h3>Api-keys (<%= @user.api_keys.count %>)</h3>
       <table class="api-keys">
         <tr>

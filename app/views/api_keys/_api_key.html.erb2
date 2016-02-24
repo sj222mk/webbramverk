@@ -1,0 +1,14 @@
+<table class="api-keys">
+  <tr>
+    <th>Description</th>
+    <td><%= api_keys.description %></td>
+  </tr>
+  <tr>
+    <th>Api-key</th>
+    <td><%= api_keys.access_token%></td>
+    </tr>
+    <tr>
+      <th>Expires at</th>
+      <td><%= api_keys.expires_at</td>
+  </tr>
+</table>

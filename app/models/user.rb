@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
+  has_many :api_keys, dependent: :destroy
   attr_accessor :remember_token
-  before_save { email.downcase! }
-  validates :name,  presence: true, length: { maximum: 50 }
+  before_save :downcase_email
+  
+  validates :name,  :presence => true,
+                    :length   => { :maximum => 50 }
+                    
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
@@ -9,6 +13,7 @@ class User < ActiveRecord::Base
   
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  
   
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -42,5 +47,13 @@ class User < ActiveRecord::Base
 # Returns a random token.
   def User.new_token
     SecureRandom.urlsafe_base64
+  end
+  
+  def downcase_email
+    self.email = email.downcase
+  end
+  
+  def feed
+    ApiKey.where("user_id = ?", id)
   end
 end

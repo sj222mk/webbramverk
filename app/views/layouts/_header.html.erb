@@ -3,7 +3,10 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
+          <li><%= link_to "Make new key", new_user_api_key_path(current_user) %></li>
+          <% if current_user.admin? %>
+            <li><%= link_to "Show all users", users_path %></li>
+          <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

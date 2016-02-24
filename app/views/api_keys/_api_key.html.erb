@@ -1,0 +1,8 @@
+<tr>
+  <td><%= api_key.description %></td>
+  <td><%= api_key.access_token %></td>
+  <td><%= api_key.expires_at %></td>
+  <td><%= link_to "delete", [api_key.user, api_key], method: :delete,
+                                       data: { confirm: "You sure?" } %></td>
+     
+</tr>
