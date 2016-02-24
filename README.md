@@ -1,5 +1,3 @@
-== README =================================================================
-
 ### Detta är en webbapplikation utvecklad i kursen 1DV450 på Linnéuniversitet.
 * Applikationen är skriven i [Cloud 9](http://www.c9.io). En körbar version finns på [Heroku](https://webbramverk.herokuapp.com/).
     * I applikationen kan man skapa en användare. 
