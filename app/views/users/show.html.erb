@@ -5,15 +5,14 @@
 </h1>
 
 <div class="col-md-8">
-    <% if @user.api_keys.any? %>
-      <h3>Api-keys (<%= @user.api_keys.count %>)</h3>
       <table class="api-keys">
         <tr>
           <th>Description</th>
           <th>Api-key</th>
           <th>Expires at</th>
         </tr>
-        
+        <% if @user.api_keys.any? %>
+      <h3>Api-keys (<%= @user.api_keys.count %>)</h3>
         <%= render @api_keys %>
       </table>
     <%= will_paginate @api_keys %>
