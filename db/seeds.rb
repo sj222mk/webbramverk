@@ -1,7 +1,7 @@
 User.create!(name:  "Admin User",
              email: "admin@email.com",
-             password:              "adminpassword",
-             password_confirmation: "adminpassword",
+             password:              "password",
+             password_confirmation: "password",
              admin: true)
 
 10.times do |n|
