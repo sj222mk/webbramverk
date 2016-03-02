@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# gem 'ruby', '2.2.4' #needed for Heroku but won´t work
+#gem 'ruby', '2.2.4' #needed for Heroku but won´t work
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.2'
 #Use bCrypt for passwords
