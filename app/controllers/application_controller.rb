@@ -2,11 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-private
+#private
 
     # Confirms a logged-in user.
     def logged_in_user
-      return true
+      #return true
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."

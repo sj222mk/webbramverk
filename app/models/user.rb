@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :api_keys, dependent: :destroy
   attr_accessor :remember_token
   before_save :downcase_email
+  # before_create :create_remember_token
   
   validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
@@ -20,11 +21,6 @@ class User < ActiveRecord::Base
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
-  end
-  
-   # Returns a random token.
-  def User.new_token
-    SecureRandom.urlsafe_base64
   end
   
   # Remembers a user in the database for use in persistent sessions.

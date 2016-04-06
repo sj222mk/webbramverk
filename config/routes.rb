@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   # get 'sessions/new'
 
-  root :to => redirect('login')
+  root :to => 'sessions#new'
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   
   resources :users do
-    resources :api_keys #, only: [:new, :create, :destroy]
+    resources :api_keys , only: [:new, :create, :destroy]
   end
   
   #resources :api_keys, only: [:new, :edit]
