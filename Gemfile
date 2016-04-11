@@ -19,6 +19,8 @@ gem 'uglifier', '2.5.3'
 gem 'coffee-rails', '4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# mocking and stubbing library
+gem 'mocha'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '4.0.3'
@@ -28,6 +30,11 @@ gem 'turbolinks', '2.3.0'
 gem 'jbuilder', '2.2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '0.4.0', group: :doc
+# rails generator scripts
+gem 'nifty-generators'
+
+#Use Geocoder for locations
+gem 'geocoder'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -63,3 +70,5 @@ group :production do
   gem 'rails_12factor', '0.0.2'
   gem 'puma', '2.11.1'
 end
+
+# gem 'mocha', group: :test
