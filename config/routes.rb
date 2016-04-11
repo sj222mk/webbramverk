@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :api_keys , only: [:new, :create, :destroy]
   end
   
+  get 'locations' => 'locations#show'
+  post 'locations/create' => 'locations#create'
+  
   #resources :api_keys, only: [:new, :edit]
   # get 'users/' => 'users#show'
   # get 'users/new'

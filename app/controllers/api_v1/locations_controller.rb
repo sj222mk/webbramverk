@@ -11,7 +11,12 @@ class LocationsController < ApplicationController
   end
   
   def show
-    @location = Location.find(params[:id])
+    @location = Location.find(params[:id]) 
+    if location.nil?
+      respond_with message: "Resource not found", status: :not_found
+    else
+      respond_with location, status: :ok  # include:
+    end
   end
   
   def new
@@ -48,5 +53,11 @@ class LocationsController < ApplicationController
   
   def location_params
     params.permit(:address) #, :limit, :offset)
+  end
+  
+  def restrict_access
+    authenticate_or_request_with_http_token do [token, options]
+      ApiKey.exists?(access_token: token)
+    end
   end
 end
