@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # get 'sessions/new'
+  # require 'api_constraints'
 
   root :to => 'sessions#new'
   get 'signup'  => 'users#new'
@@ -11,9 +12,6 @@ Rails.application.routes.draw do
     resources :api_keys , only: [:new, :create, :destroy]
   end
   
-  get 'locations' => 'locations#show'
-  post 'locations/create' => 'locations#create'
-  
   #resources :api_keys, only: [:new, :edit]
   # get 'users/' => 'users#show'
   # get 'users/new'
@@ -21,6 +19,18 @@ Rails.application.routes.draw do
   # get 'users/:id' => 'users#show'
   
   get 'users/:id/api_keys/new' => 'api_keys#new'
+  
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :locations #, only: [:index, :show, :create]
+      # root to: 'locations#index'
+    end
+  end
+    
+  get 'locations' => 'api/v1/locations#index' 
+  get 'showLocations' => 'api/v1/locations#show' 
+  # post 'locations/create' => 'api_v1::locations#create'
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
