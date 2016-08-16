@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  placename: MyString
+  grade: 
+  description: MyText
+
+two:
+  type: 
+  placename: MyString
+  grade: 
+  description: MyText

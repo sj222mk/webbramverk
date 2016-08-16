@@ -1,0 +1,6 @@
+      invoke  active_record
+      create    db/migrate/20160808104204_create_creators.rb
+      create    app/models/creator.rb
+      invoke    test_unit
+      create      test/models/creator_test.rb
+      create      test/fixtures/creators.yml

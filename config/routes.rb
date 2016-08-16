@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'user_token' => 'user_token#create'
   # get 'sessions/new'
 
   root :to => 'sessions#new'
@@ -11,13 +12,40 @@ Rails.application.routes.draw do
     resources :api_keys , only: [:new, :create, :destroy]
   end
   
+  # API routes
+  #namespace :api do
+   # namespace :v1 do
+    #  resources :locations
+     # resources :places
+    #end
+  #end
+
+  # Knock for api authorization
+  #mount Knock::Engine => "/api/v1/"
+  
   #resources :api_keys, only: [:new, :edit]
   # get 'users/' => 'users#show'
   # get 'users/new'
   # get 'users/:name' => 'users#show'
   # get 'users/:id' => 'users#show'
   
-  get 'users/:id/api_keys/new' => 'api_keys#new'
+  #get 'users/:id/api_keys/new' => 'api_keys#new'
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :creators, only: [:index, :show, :create, :destroy, :update] do
+        resources :places, only: [:index]
+      end
+
+      resources :places, only: [:index, :show, :create, :destroy, :update] do
+        resources :locations, only: [:index]
+        resources :creators, only: [:index]
+      end
+
+      resources :locations, only: [:index, :show] do
+        resources :places, only: [:index]
+      end
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
