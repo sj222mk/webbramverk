@@ -41,7 +41,7 @@ class Api::V1::ApiController < ActionController::Base
   # Default parameters 
   def offset_and_limit_params
     @offset = params[:offset].nil? ? 0  : params[:offset].to_i
-    @limit  = params[:limit].nil?  ? 30 : params[:limit].to_i
+    @limit  = params[:limit].nil?  ? 20 : params[:limit].to_i
   end
 
 end

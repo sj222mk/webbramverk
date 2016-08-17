@@ -7,9 +7,7 @@ class Api::V1::LocationsController < ApplicationController
     if locations.nil?
       render json: { error: "No locations found"}, status: :not_found
     else
-      locations = locations.limit(@limit).offset(@offset).order("created_at DESC")
-      #locations = serialize_locations(locations)
-      render json: locations, status: :ok
+      render json: serialize_locations(locations)
     end
   end
   
@@ -39,18 +37,27 @@ class Api::V1::LocationsController < ApplicationController
   end
   
   # Custom serialize to work with normal json (with offset, limit and amount)
-  def serialize_locations(locations)
+  def serialize_locations(locationlist)
+    locations = []
+    
+    # Find out if result is an object or a collection of objects
+    if locationlist.is_a?(Location)
+      locations.push(locationlist)
+    else
+      locations = locationlist.limit(@limit).offset(@offset).order("updated_at DESC")
+    end
+    
     serialized_locations = []
 
     locations.each do |location|
       serialized_location = {
         location: {
-          address_city: location.address_city,
+          address: location.address,
           latitude: location.latitude,
           longitude: location.longitude,
           links: {
             self: api_v1_location_path(location.id),
-            events: api_v1_location_events_path(location.id)
+            places: api_v1_location_places_path(location.id)
           }
         }
       }
